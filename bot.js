@@ -8,8 +8,8 @@ client.once('ready', () => {
 });
 
 client.on('message', async function (msg) {
-
-	if (msg.content.toLowerCase() == "-felix")
+	try {
+	if (msg.content.toLowerCase() == "-felix") {
 		var r = await fetch('http://localhost:9000');
 		link = await r.text()
 		console.log(link)
@@ -26,6 +26,10 @@ client.on('message', async function (msg) {
         			).slice(-6)
     			)
     			.setImage(link))
+		}
+	} catch (e) {
+		console.log(e);
+	}
 });
 
 client.login(process.env.TOKEN)
